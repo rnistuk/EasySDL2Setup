@@ -17,8 +17,12 @@ cd build
 cmake ..
 make
 ``` 
-the application `demo` application will be build in the `build/sdl_application` 
-directory.
+the application `demo` will be in build in the `build/sdl_application` directory.
+
+```commandline
+cd sdl_application
+./demo
+```
 
 ### Prerequisites
 
