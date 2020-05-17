@@ -4,7 +4,7 @@ the SDL2 library. SDL2 provides low-level access to audio, keyboard, mouse,
 joystick, and graphics.
 
 SDL2 is my go to library when I need to visualize some functionality but don't 
-want to go to the bother too much set up. 
+want to go to the bother of too much set up. 
 
 ## Getting Started
 
