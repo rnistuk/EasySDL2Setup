@@ -24,6 +24,14 @@ cd sdl_application
 ./demo
 ```
 
+### Next Steps
+I've deliberately made this project as simple as possible, there are a number of 
+things that could be done to make it better:
+* encapsulate the draw and setup functions into a class
+* SDL_Window and SDL_Renderer could be turned into std::shared_ptr 
+* encapsulate SDL_Window and SDL_Renderer into their own classes
+* ...
+
 ### Prerequisites
 
 The following applications were used to create and build this demo.
