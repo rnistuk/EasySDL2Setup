@@ -57,7 +57,5 @@ I'd be happy to hear any suggestions to make this project more useful.
 
 ## Acknowledgments
 
-* [Noah](http://www.noah.org/wiki/Wavelength_to_RGB_in_Python) - Noah likes 
-  python and created the wavelength to rgb converter that I used as an 
-  example in this project.  
+* [The Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw) - I'm using Daniel Shiffman's book, The Nature of Code, to create demos to test my SDL2 wrapper.
 
