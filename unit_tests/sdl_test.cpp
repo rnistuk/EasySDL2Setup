@@ -1,21 +1,19 @@
-#include "../sdl_application/SDL2/SDL2.h"
+#include "../sdl_application/SDL2Wrapper/SDL2.h"
 #include <gtest/gtest.h>
 #include <SDL2/SDL.h>
 
-TEST(SDL2Test, SDL2_canBe_instantiated)
-{
+TEST(SDL2Test, SDL2_canBe_instantiated) {
     // Arrange
-    auto sut = new SDL2();
+    auto sut = new  DZS::SDL2();
     // Act
 
     // Assert
-    EXPECT_NE((void*)NULL, (void*)sut);
+    EXPECT_NE((void *) NULL, (void *) sut);
 }
 
-TEST(SDL2Test, SDL2_canBe_initialized)
-{
+TEST(SDL2Test, SDL2_canBe_initialized) {
     // Arrange
-    auto sut = new SDL2();
+    auto sut = new DZS::SDL2();
 
     // Act
     auto actual = SDL_WasInit(SDL_INIT_EVERYTHING);
@@ -24,10 +22,9 @@ TEST(SDL2Test, SDL2_canBe_initialized)
     EXPECT_EQ(SDL_INIT_EVERYTHING, actual);
 }
 
-TEST(SDL2Test, SDL2_cleansUp_whenDeleted)
-{
+TEST(SDL2Test, SDL2_cleansUp_whenDeleted) {
     // Arrange
-    auto sut = new SDL2();
+    auto sut = new DZS::SDL2();
     delete sut;
 
     // Act
@@ -37,11 +34,10 @@ TEST(SDL2Test, SDL2_cleansUp_whenDeleted)
     EXPECT_EQ(0, actual);
 }
 
-TEST(SDL2Test, SDL2_createsWindow)
-{
+TEST(SDL2Test, SDL2_createsWindow) {
     // Arrange
     auto title = "title";
-    auto sut = new SDL2();
+    auto sut = new DZS::SDL2();
     auto actual = sut->createWindow();
 
     // Act

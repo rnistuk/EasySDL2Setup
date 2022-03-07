@@ -7,7 +7,12 @@ add_executable(
         SDL2Wrapper/SDL2.h
         SDL2Wrapper/SDL2Renderer.cpp
         SDL2Wrapper/SDL2Renderer.h
-        NatureOfCode/Walker.cpp
-        NatureOfCode/Walker.h NatureOfCode/Histogram.cpp NatureOfCode/Histogram.h NatureOfCode/IDemo.h)
+)
 
-target_link_libraries(demo ${SDL2_LINK_LIBRARIES})
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+
+target_link_libraries(demo ${SDL2_LINK_LIBRARIES} ${SDLTTF_LIBRARY})

@@ -1,10 +1,10 @@
 #pragma once
+
 #include <iostream>
 #include <memory>
 #include <SDL2/SDL.h>
 
 namespace DZS {
-
     class SDL2Renderer {
     public:
         explicit SDL2Renderer(SDL_Renderer *r) : rndr(nullptr, &SDL_DestroyRenderer) {
@@ -16,9 +16,7 @@ namespace DZS {
         }
 
         int draw_line(int x1, int y1, int x2, int y2) {
-            return SDL_RenderDrawLine(this->renderer()
-                    , x1, y1
-                    , x2, y2);
+            return SDL_RenderDrawLine(this->renderer(), x1, y1, x2, y2);
         }
 
         int draw_point(int x, int y) {
@@ -34,9 +32,9 @@ namespace DZS {
             int y = r;
             int d = 3 - (2 * r);
             this->displayBresenhmCircle(xc, yc, x, y);
-            while (x<=y) {
+            while (x <= y) {
                 x++;
-                d = d<0 ? d + (4*x) + 6 :  d + 4 * ( x - y--) + 10;
+                d = d < 0 ? d + (4 * x) + 6 : d + 4 * (x - y--) + 10;
                 this->displayBresenhmCircle(xc, yc, x, y);
             }
 
@@ -49,26 +47,35 @@ namespace DZS {
             return SDL_RenderDrawRect(this->renderer(), &r);
         }
 
+        int render_texture(int x, int y, int w, int h, SDL_Surface* s) {
+            SDL_Rect dstrect = { x, y, w, h };
+            SDL_Texture * t = SDL_CreateTextureFromSurface(this->renderer(), s);
+            return SDL_RenderCopy(this->renderer(), t, NULL, &dstrect);
+        }
+
         void present() {
             SDL_RenderPresent(this->renderer());
         }
 
-        void set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255 ) {
+        void set_render_draw_blend_mode(SDL_BlendMode bm) {
+            SDL_SetRenderDrawBlendMode(this->renderer(), bm);
+        }
+
+        void set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255) {
             SDL_SetRenderDrawColor(this->renderer(), r, g, b, a);
         }
 
         int width() {
-            int w,h;
-            SDL_GetRendererOutputSize(this->renderer(),&w, &h);
+            int w, h;
+            SDL_GetRendererOutputSize(this->renderer(), &w, &h);
             return w;
         }
 
         int height() {
-            int w,h;
-            SDL_GetRendererOutputSize(this->renderer(),&w, &h);
+            int w, h;
+            SDL_GetRendererOutputSize(this->renderer(), &w, &h);
             return h;
         }
-
 
         void info() {
             SDL_RendererInfo ri;
@@ -77,8 +84,8 @@ namespace DZS {
             SDL_GetRendererInfo(this->renderer(), &ri);
             SDL_GetRenderDriverInfo(0, &ri0);
 
-            int w,h;
-            SDL_GetRendererOutputSize(this->renderer(),&w, &h);
+            int w, h;
+            SDL_GetRendererOutputSize(this->renderer(), &w, &h);
 
 
             std::cout << "width:" << ri.max_texture_width << "\n";
@@ -88,22 +95,23 @@ namespace DZS {
 
     private:
         std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> rndr;
-        SDL_Renderer* renderer() {
+
+        SDL_Renderer *renderer() {
             return rndr.get();
         }
+
         uint ptSize{0};
 
         template<typename T>
-        void displayBresenhmCircle(T xc_, T yc_, T x, T y)
-        {
-            SDL_RenderDrawPoint(this->renderer(),xc_+x, yc_+y);
-            SDL_RenderDrawPoint(this->renderer(),xc_-x, yc_+y);
-            SDL_RenderDrawPoint(this->renderer(),xc_+x, yc_-y);
-            SDL_RenderDrawPoint(this->renderer(),xc_-x, yc_-y);
-            SDL_RenderDrawPoint(this->renderer(),xc_+y, yc_+x);
-            SDL_RenderDrawPoint(this->renderer(),xc_-y, yc_+x);
-            SDL_RenderDrawPoint(this->renderer(),xc_+y, yc_-x);
-            SDL_RenderDrawPoint(this->renderer(),xc_-y, yc_-x);
+        void displayBresenhmCircle(T xc_, T yc_, T x, T y) {
+            SDL_RenderDrawPoint(this->renderer(), xc_ + x, yc_ + y);
+            SDL_RenderDrawPoint(this->renderer(), xc_ - x, yc_ + y);
+            SDL_RenderDrawPoint(this->renderer(), xc_ + x, yc_ - y);
+            SDL_RenderDrawPoint(this->renderer(), xc_ - x, yc_ - y);
+            SDL_RenderDrawPoint(this->renderer(), xc_ + y, yc_ + x);
+            SDL_RenderDrawPoint(this->renderer(), xc_ - y, yc_ + x);
+            SDL_RenderDrawPoint(this->renderer(), xc_ + y, yc_ - x);
+            SDL_RenderDrawPoint(this->renderer(), xc_ - y, yc_ - x);
         }
 
     };

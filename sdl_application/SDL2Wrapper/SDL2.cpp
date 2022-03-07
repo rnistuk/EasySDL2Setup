@@ -10,7 +10,7 @@ namespace DZS {
         SDL_Quit();
     }
 
-    SDL2Window* SDL2::createWindow() {
+    SDL2Window *SDL2::createWindow() {
         return new SDL2Window("title");
     }
 

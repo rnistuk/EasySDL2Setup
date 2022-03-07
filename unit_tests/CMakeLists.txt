@@ -8,7 +8,8 @@ add_executable(
         ../sdl_application/SDL2Wrapper/SDL2.h
         ../sdl_application/SDL2Wrapper/SDL2Renderer.cpp
         ../sdl_application/SDL2Wrapper/SDL2Renderer.h
-        renderer_test.cpp)
+        renderer_test.cpp
+)
 
 target_link_libraries(
         tests
