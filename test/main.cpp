@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 void
 setup(SDL_Window *window, SDL_Renderer *renderer);
